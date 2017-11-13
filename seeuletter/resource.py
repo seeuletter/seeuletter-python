@@ -12,6 +12,14 @@ def seeuletter_format(resp):
         'postcard': Postcard
     }
 
+    # Change Keys for To/From
+    if isinstance(resp, dict) and 'to' in resp:
+        resp['to_address'] = resp['to']
+        resp.pop('to', None)
+    if isinstance(resp, dict) and 'from' in resp:
+        resp['from_address'] = resp['from']
+        resp.pop('from', None)
+        
     # Recursively Set Objects for Lists
     if isinstance(resp, dict) and 'object' in resp and resp['object'] == 'list':
         resp['data'] = [seeuletter_format(i) for i in resp['data']]

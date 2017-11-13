@@ -61,7 +61,7 @@ seeuletter.api_key = 'your-api-key'
 
 example_letter = seeuletter.Letter.create(
     description='Test Letter from Python Bindings',
-    to={
+    to_address={
         'name': 'Erlich',
         'address_line1': '30 rue de rivoli',
         'address_city': 'Paris',
