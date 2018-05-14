@@ -1,6 +1,8 @@
 # seeuletter-python
 
 [![PyPI version](https://badge.fury.io/py/seeuletter.svg)](http://badge.fury.io/py/seeuletter)
+[![Dependency Status](https://gemnasium.com/badges/github.com/seeuletter/seeuletter-python.svg)](https://gemnasium.com/github.com/seeuletter/seeuletter-python)
+
 
 
 
