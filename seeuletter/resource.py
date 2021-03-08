@@ -109,16 +109,16 @@ class CreateableAPIResource(APIResource):
     @classmethod
     def create(cls, **params):
         requestor = api_requestor.APIRequestor()
-		if 'channel' in params.keys():
-			response = requestor.request('post', '{0}{1}'.format(cls.endpoint, params['channel']), params)
-		else:
-			response = requestor.request('post', cls.endpoint, params)
+        if 'channel' in params.keys():
+            response = requestor.request('post', '{0}{1}'.format(cls.endpoint, params['channel']), params)
+        else:
+            response = requestor.request('post', cls.endpoint, params)
         return seeuletter_format(response)
 
 class Letter(ListableAPIResource, CreateableAPIResource):
-	endpoint = '/letters'
+    endpoint = '/letters'
     
-	@classmethod
+    @classmethod
     def create(cls, **params):
         if isinstance(params, dict):
             if 'from_address' in params:
@@ -129,9 +129,9 @@ class Letter(ListableAPIResource, CreateableAPIResource):
                 params.pop('to_address')
         return super(Letter, cls).create(**params)
 	
-	@classmethod
+    @classmethod
     def createElectronic(cls, **params):
-		params['channel'] = '/electronic'
+        params['channel'] = '/electronic'
         if isinstance(params, dict):
             if 'from_address' in params:
                 params['from'] = params['from_address']
