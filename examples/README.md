@@ -10,6 +10,11 @@ cd examples/
 
 ## Examples
 
+### Create an electronic letter
+```
+python letter_electronic.py
+```
+
 ### Create a letter
 ```
 python letter.py
