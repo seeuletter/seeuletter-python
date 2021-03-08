@@ -3,9 +3,6 @@
 [![PyPI version](https://badge.fury.io/py/seeuletter.svg)](http://badge.fury.io/py/seeuletter)
 [![Dependency Status](https://gemnasium.com/badges/github.com/seeuletter/seeuletter-python.svg)](https://gemnasium.com/github.com/seeuletter/seeuletter-python)
 
-
-
-
 Seeuletter.com Python bindings is a simple but flexible wrapper for the [Seeuletter.com](https://www.seeuletter.com) API.
 
 See full Seeuletter.com documentation [here](https://docs.seeuletter.com/?python#).
@@ -34,7 +31,6 @@ Bien démarrer : https://www.seeuletter.com/guide/bien-demarrer-avec-l-api-d-env
 ## Getting Started
 
 Here's a general overview of the Seeuletter services available, click through to read more.
-
 
 Please read through the official [API Documentation](https://docs.seeuletter.com/?python#) to get a complete sense of what to expect from each endpoint.
 
@@ -77,6 +73,34 @@ example_letter = seeuletter.Letter.create(
     },
     postage_type="prioritaire",
     color="bw"
+)
+
+print "Letter Response : "
+print "\n"
+print example_letter
+print "\n"
+```
+
+#### Create a new electronic letter
+```python
+import seeuletter
+seeuletter.api_key = 'your-api-key'
+
+example_letter = seeuletter.Letter.createElectronic(
+    description='Test Electronic Letter from Python Bindings',
+    to_address={
+        email: 'erlich.dumas@example.com',
+        first_name: 'Erlich',
+        last_name: 'Dumas', 
+        status: 'individual'
+    },
+    content: 'Please review the attached documents:',
+    source_file="""<html>Hello {{name}},</html>""",
+    source_file_type="html",
+    variables={
+        'name': 'Erlich'
+    },
+    postage_type="lre"
 )
 
 print "Letter Response : "
