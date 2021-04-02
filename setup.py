@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='seeuletter',
-    version='1.0.1',
+    version='1.1.0',
     author='Seeuletter',
     author_email='hello@seeuletter.com',
     packages=['seeuletter'],
