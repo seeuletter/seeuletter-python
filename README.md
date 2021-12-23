@@ -10,7 +10,7 @@ See full Seeuletter.com documentation [here](https://docs.seeuletter.com/?python
 For best results, be sure that you're using the latest version of the Seeuletter API and the latest version of the Python wrapper.
 
 #### French
-Un module Python pour envoyer du courrier postal en ligne depuis votre application Python.
+Un module Python pour envoyer du courrier postal ou électronique en ligne depuis votre application Python.
 
 Seeuletter propose une API permettant d'envoyer très facilement du courrier postal depuis votre ERP, CRM ou application web.
 
@@ -25,7 +25,9 @@ Bien démarrer : https://www.seeuletter.com/guide/bien-demarrer-avec-l-api-d-env
 - [Getting Started](#getting-started)
   - [Registration](#registration)
   - [Installation](#installation)
-  - [Usage](#usage)
+  - [Letters](#letters)
+  - [Accounts](#accounts)
+  - [Invoices](#invoices)
 - [Examples](#examples)
 
 ## Getting Started
@@ -134,6 +136,77 @@ print "\n"
 print get_letter
 print "\n"
 ```
+
+### Accounts
+
+#### Create a new account for the company
+```python
+import seeuletter
+seeuletter.api_key = 'your-api-key'
+
+example_account = seeuletter.Account.create(
+  email="msb.partner@example.com",
+  name="Erlich Bachman",
+  phone="+33104050607",
+  company_name="MSB Partner from Python Wrapper",
+  address_line1='30 rue de rivoli',
+  address_line2='',
+  address_city='Paris',
+  address_country='France',
+  address_postalcode='75004'
+)
+
+print "New Account Response : "
+print "\n"
+print example_account
+print "\n"
+```
+
+#### Update the account company email
+```python
+import seeuletter
+seeuletter.api_key = 'your-api-key'
+
+seeuletter.Account.updateEmail(
+    "ACCOUNT COMPANY ID",
+    "msb.partner.new@example.com",
+)
+
+print "Email Account Updated"
+print "\n"
+```
+
+### Invoices
+
+#### List all invoices for a company
+```python
+import seeuletter
+seeuletter.api_key = 'your-api-key'
+
+example_list_invoices = seeuletter.Invoice.list(
+  status="paid",
+  date_start="2020-01-01"
+)
+
+print "List Invoice Response : "
+print "\n"
+print example_list
+print "\n"
+```
+
+#### Retrieve a specific invoice
+```python
+import seeuletter
+seeuletter.api_key = 'your-api-key'
+
+example_invoice = seeuletter.Invoice.retrieve("INVOICE ID")
+
+print "Invoice Response : "
+print "\n"
+print example_invoice
+print "\n"
+```
+
 
 
 ## Examples

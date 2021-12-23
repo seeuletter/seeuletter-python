@@ -24,3 +24,13 @@ python letter.py
 ```
 python postcard.py
 ```
+
+### Create and update an account
+```
+python account.py
+```
+
+### List and retrieve company invoices
+```
+python invoice.py
+```
