@@ -1,7 +1,7 @@
 import seeuletter
 
 # Replace this API key with your own.
-seeuletter.api_key = "test_726e0bec-90f7-4ae4-8910-e5d12920320c"
+seeuletter.api_key = "API_KEY_HERE"
 
 # Creating a Letter Electronic
 example_letter = seeuletter.Letter.createElectronic(

@@ -53,7 +53,7 @@ class APIRequestor(object):
             return self.parse_response(
                 requests.delete(seeuletter.api_base + url, auth=(self.api_key, ''), headers=headers)
             )
-        elif method == 'post':
+        elif method == 'post' or method == 'put':
             data = {}
             files = params.pop('files', {})
             explodedParams = {}
@@ -78,6 +78,14 @@ class APIRequestor(object):
                         else:
                             data[k] = v
 
-            return self.parse_response(
-                requests.post(seeuletter.api_base + url, auth=(self.api_key, ''), data=data, files=files, headers=headers)
-            )
+            response = {}
+            if method == 'put':
+                response = self.parse_response(
+                   requests.put(seeuletter.api_base + url, auth=(self.api_key, ''), data=data, files=files, headers=headers)
+                )
+            else:
+                response = self.parse_response(
+                    requests.post(seeuletter.api_base + url, auth=(self.api_key, ''), data=data, files=files, headers=headers)
+                )
+
+            return response

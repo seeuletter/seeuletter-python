@@ -1,7 +1,7 @@
 import seeuletter
 
 # Replace this API key with your own.
-seeuletter.api_key = "test_ce379297-42c4-45a0-871a-15588a5df2c1"
+seeuletter.api_key = "API_KEY_HERE"
 
 
 # Creating a Postcard

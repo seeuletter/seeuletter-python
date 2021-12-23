@@ -9,7 +9,9 @@ from seeuletter.compat import string_type
 def seeuletter_format(resp):
     types = {
         'letter': Letter,
-        'postcard': Postcard
+        'postcard': Postcard,
+        'account': Account,
+        'invoice': Invoice
     }
 
     # Change Keys for To/From
@@ -115,6 +117,14 @@ class CreateableAPIResource(APIResource):
             response = requestor.request('post', cls.endpoint, params)
         return seeuletter_format(response)
 
+class UpdatableAPIResource(APIResource):
+    @classmethod
+    def update(cls, id, **params):
+        requestor = api_requestor.APIRequestor()
+        response = requestor.request('put', '%s/%s' % (cls.endpoint, id), params)
+
+        return seeuletter_format(response)
+
 class Letter(ListableAPIResource, CreateableAPIResource):
     endpoint = '/letters'
     
@@ -143,6 +153,7 @@ class Letter(ListableAPIResource, CreateableAPIResource):
 
 class Postcard(ListableAPIResource, CreateableAPIResource):
     endpoint = '/postcards'
+
     @classmethod
     def create(cls, **params):
         if isinstance(params, dict):
@@ -153,4 +164,24 @@ class Postcard(ListableAPIResource, CreateableAPIResource):
                 params['to'] = params['to_address']
                 params.pop('to_address')
         return super(Postcard, cls).create(**params)
+
+class Account(CreateableAPIResource, UpdatableAPIResource):
+    endpoint = '/accounts'
+
+    @classmethod
+    def create(cls, **params):
+        return super(Account, cls).create(**params)
+
+    @classmethod
+    def updateEmail(cls, id, email):
+        params = {
+            'email': email
+        }
+        return super(Account, cls).update(id, **params)
+
+class Invoice(ListableAPIResource):
+    endpoint = '/invoices'
+
+
+
 
