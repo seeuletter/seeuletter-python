@@ -1,5 +1,5 @@
 # Resources
-from seeuletter.resource import (Letter, Postcard)
+from seeuletter.resource import (Letter, Postcard, Account, Invoice)
 
 from seeuletter.version import VERSION
 
